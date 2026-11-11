@@ -68,17 +68,17 @@ cp .env.example .env
 Set your Meta credentials in `.env`:
 ```ini
 # User Access Token (with ads_management, ads_read, pages_read_engagement, pages_show_list, instagram_basic)
-META_ACCESS_TOKEN=EAAfhiUg...your_token
+META_ACCESS_TOKEN=XXX...
 
 # Target Facebook Page ID
-META_PAGE_ID=1452290297964709
+META_PAGE_ID=XXX...
 
 # Optional: Dedicated Page Access Token (if omitted, resolved automatically via /me/accounts)
-META_PAGE_ACCESS_TOKEN=EAAfhiUg...your_page_token
+META_PAGE_ACCESS_TOKEN=XXX...
 
 # Meta App Credentials
-META_APP_ID=2XXXXXXXXX
-META_APP_SECRET=d5bXXXXXXXXXXXXXXX
+META_APP_ID=XXX...
+META_APP_SECRET=XXX...
 
 META_GRAPH_API_VERSION=v23.0
 ```
@@ -118,7 +118,7 @@ Add the server to your Antigravity global MCP configuration at:
         "c:\\path\\to\\meta mcp\\meta_mcp_server.py"
       ],
       "env": {
-        "META_PAGE_ID": "1452290297964709"
+        "META_PAGE_ID": "XXX..."
       }
     }
   }
@@ -156,8 +156,8 @@ In **Gemini Enterprise**:
 | **Authorization URL** | `https://www.facebook.com/v23.0/dialog/oauth` |
 | **Authorization Parameters**| `&response_type=code` |
 | **Token URL** | `https://graph.facebook.com/v23.0/oauth/access_token` |
-| **Client ID** | Your Meta App ID (`2XXXXXXXXXXXXXX`) |
-| **Client Secret** | Your Meta App Secret |
+| **Client ID** | `XXX...` |
+| **Client Secret** | `XXX...` |
 | **Scopes** | `ads_mcp_management ads_read pages_read_engagement pages_show_list instagram_basic` |
 
 ---
@@ -180,8 +180,8 @@ chmod +x deploy.sh
 ### Manual Deployment via gcloud CLI:
 ```bash
 # 1. Store tokens securely in GCP Secret Manager
-echo -n "YOUR_META_ACCESS_TOKEN" | gcloud secrets create meta-access-token --data-file=-
-echo -n "YOUR_META_PAGE_ID" | gcloud secrets create meta-page-id --data-file=-
+echo -n "XXX..." | gcloud secrets create meta-access-token --data-file=-
+echo -n "XXX..." | gcloud secrets create meta-page-id --data-file=-
 
 # 2. Deploy container to Cloud Run
 gcloud run deploy meta-mcp \
