@@ -1,0 +1,68 @@
+# ==============================================================================
+# Meta MCP Server - .gitignore
+# Only main production files are tracked. All tests, docs, assets, and secrets excluded.
+# ==============================================================================
+
+# Environment variables & secrets (Never commit secrets!)
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.token
+oauth_creds.json
+
+# Test files & test suites (Excluded as requested)
+test_*.py
+*_test.py
+tests/
+test_server.py
+
+# Build, generator & helper scripts
+build_*.py
+generate_*.py
+build_executive_doc.py
+generate_proof_screenshots.py
+
+# Generated documents & assets
+*.docx
+*.pdf
+doc_assets/
+
+# Screenshots & generated media
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.gif
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+venv/
+env/
+.venv/
+ENV/
+
+# IDE & Editor folders
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Antigravity & Agent workspace cache
+.agents/
+.agent/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
