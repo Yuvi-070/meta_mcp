@@ -77,8 +77,8 @@ META_PAGE_ID=1452290297964709
 META_PAGE_ACCESS_TOKEN=EAAfhiUg...your_page_token
 
 # Meta App Credentials
-META_APP_ID=2218304572400377
-META_APP_SECRET=d5bc94e5357e270cdfe14807e45a54f3
+META_APP_ID=2XXXXXXXXX
+META_APP_SECRET=d5bXXXXXXXXXXXXXXX
 
 META_GRAPH_API_VERSION=v23.0
 ```
@@ -156,7 +156,7 @@ In **Gemini Enterprise**:
 | **Authorization URL** | `https://www.facebook.com/v23.0/dialog/oauth` |
 | **Authorization Parameters**| `&response_type=code` |
 | **Token URL** | `https://graph.facebook.com/v23.0/oauth/access_token` |
-| **Client ID** | Your Meta App ID (`2218304572400377`) |
+| **Client ID** | Your Meta App ID (`2XXXXXXXXXXXXXX`) |
 | **Client Secret** | Your Meta App Secret |
 | **Scopes** | `ads_mcp_management ads_read pages_read_engagement pages_show_list instagram_basic` |
 
