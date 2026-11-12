@@ -461,7 +461,6 @@ def adaccounts_resource() -> Dict[str, Any]:
 app = mcp.streamable_http_app()
 
 
-@app.route("/health", methods=["GET"])
 async def health_endpoint(request) -> JSONResponse:
     return JSONResponse({
         "status": "healthy",
@@ -471,7 +470,6 @@ async def health_endpoint(request) -> JSONResponse:
     })
 
 
-@app.route("/", methods=["GET"])
 async def root_endpoint(request) -> JSONResponse:
     return JSONResponse({
         "service": "Meta MCP Server",
@@ -486,14 +484,12 @@ async def root_endpoint(request) -> JSONResponse:
 # REST API Endpoints for Vertex AI Agent Builder & OpenAPI Tools
 # ==============================================================================
 
-@app.route("/api/facebook/page-info", methods=["GET"])
 async def api_facebook_page_info(request) -> JSONResponse:
     page_id = request.query_params.get("page_id", "")
     data = facebook_page_info(page_id=page_id)
     return JSONResponse(data)
 
 
-@app.route("/api/facebook/posts", methods=["GET"])
 async def api_facebook_posts(request) -> JSONResponse:
     limit_str = request.query_params.get("limit", "5")
     limit = int(limit_str) if limit_str.isdigit() else 5
@@ -502,23 +498,30 @@ async def api_facebook_posts(request) -> JSONResponse:
     return JSONResponse(data)
 
 
-@app.route("/api/meta/ad-accounts", methods=["GET"])
 async def api_meta_ad_accounts(request) -> JSONResponse:
     data = meta_ad_accounts()
     return JSONResponse(data)
 
 
-@app.route("/api/meta/ad-account-details", methods=["GET"])
 async def api_meta_ad_account_details(request) -> JSONResponse:
     ad_account_id = request.query_params.get("ad_account_id", "")
     data = meta_ad_account_details(ad_account_id=ad_account_id)
     return JSONResponse(data)
 
 
-@app.route("/api/meta/check-connection", methods=["GET"])
 async def api_meta_check_connection(request) -> JSONResponse:
     data = meta_check_connection()
     return JSONResponse(data)
+
+
+# Explicit route registration (compatible across all Starlette versions)
+app.add_route("/health", health_endpoint, methods=["GET"])
+app.add_route("/", root_endpoint, methods=["GET"])
+app.add_route("/api/facebook/page-info", api_facebook_page_info, methods=["GET"])
+app.add_route("/api/facebook/posts", api_facebook_posts, methods=["GET"])
+app.add_route("/api/meta/ad-accounts", api_meta_ad_accounts, methods=["GET"])
+app.add_route("/api/meta/ad-account-details", api_meta_ad_account_details, methods=["GET"])
+app.add_route("/api/meta/check-connection", api_meta_check_connection, methods=["GET"])
 
 
 # ==============================================================================
