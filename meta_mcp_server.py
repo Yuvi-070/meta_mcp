@@ -483,6 +483,45 @@ async def root_endpoint(request) -> JSONResponse:
 
 
 # ==============================================================================
+# REST API Endpoints for Vertex AI Agent Builder & OpenAPI Tools
+# ==============================================================================
+
+@app.route("/api/facebook/page-info", methods=["GET"])
+async def api_facebook_page_info(request) -> JSONResponse:
+    page_id = request.query_params.get("page_id", "")
+    data = facebook_page_info(page_id=page_id)
+    return JSONResponse(data)
+
+
+@app.route("/api/facebook/posts", methods=["GET"])
+async def api_facebook_posts(request) -> JSONResponse:
+    limit_str = request.query_params.get("limit", "5")
+    limit = int(limit_str) if limit_str.isdigit() else 5
+    page_id = request.query_params.get("page_id", "")
+    data = facebook_posts(limit=limit, page_id=page_id)
+    return JSONResponse(data)
+
+
+@app.route("/api/meta/ad-accounts", methods=["GET"])
+async def api_meta_ad_accounts(request) -> JSONResponse:
+    data = meta_ad_accounts()
+    return JSONResponse(data)
+
+
+@app.route("/api/meta/ad-account-details", methods=["GET"])
+async def api_meta_ad_account_details(request) -> JSONResponse:
+    ad_account_id = request.query_params.get("ad_account_id", "")
+    data = meta_ad_account_details(ad_account_id=ad_account_id)
+    return JSONResponse(data)
+
+
+@app.route("/api/meta/check-connection", methods=["GET"])
+async def api_meta_check_connection(request) -> JSONResponse:
+    data = meta_check_connection()
+    return JSONResponse(data)
+
+
+# ==============================================================================
 # Main Entry Point
 # ==============================================================================
 
