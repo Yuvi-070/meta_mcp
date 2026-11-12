@@ -4,6 +4,7 @@ FROM python:3.12-slim
 # Prevent Python from writing .pyc files and buffer stdout/stderr for real-time logs in GCP Cloud Logging
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
+    PYTHONPATH=/app \
     PORT=8080
 
 WORKDIR /app
