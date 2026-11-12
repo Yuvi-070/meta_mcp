@@ -25,7 +25,7 @@ gcloud run deploy $ServiceName `
     --region $Region `
     --platform managed `
     --allow-unauthenticated `
-    --set-env-vars="MCP_TRANSPORT=streamable-http,PORT=8080"
+    --set-env-vars="MCP_TRANSPORT=streamable-http"
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host "`n=== Deployment Successful! ===" -ForegroundColor Green

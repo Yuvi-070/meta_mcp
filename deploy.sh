@@ -14,7 +14,7 @@ gcloud run deploy "$SERVICE_NAME" \
   --region "$REGION" \
   --platform managed \
   --allow-unauthenticated \
-  --set-env-vars="MCP_TRANSPORT=streamable-http,PORT=8080"
+  --set-env-vars="MCP_TRANSPORT=streamable-http"
 
 SERVICE_URL=$(gcloud run services describe "$SERVICE_NAME" --region "$REGION" --format 'value(status.url)')
 
