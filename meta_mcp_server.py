@@ -19,7 +19,7 @@ load_dotenv(env_path)
 GRAPH_API_VERSION = os.getenv("META_GRAPH_API_VERSION", "v23.0")
 GRAPH_API_BASE = f"https://graph.facebook.com/{GRAPH_API_VERSION}"
 
-mcp = FastMCP("Meta MCP Server")
+mcp = FastMCP("Meta MCP Server", stateless_http=True)
 
 # Cache page access tokens retrieved dynamically from /me/accounts
 _PAGE_TOKEN_CACHE: Dict[str, str] = {}

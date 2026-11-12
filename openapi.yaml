@@ -1,0 +1,101 @@
+openapi: 3.0.0
+info:
+  title: Meta Marketing & Graph API Tool
+  description: Connects to Meta Graph API to fetch Facebook Page information, posts, and Meta ad account metrics.
+  version: 1.0.0
+servers:
+  - url: https://begin-consumers-highlighted-vii.trycloudflare.com
+paths:
+  /api/facebook/page-info:
+    get:
+      summary: Get Facebook Page Details
+      description: Returns the Facebook Page name, followers count, category, verification, and link.
+      operationId: getFacebookPageInfo
+      parameters:
+        - name: page_id
+          in: query
+          required: false
+          description: Optional Facebook Page ID. Defaults to configured page.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/facebook/posts:
+    get:
+      summary: Get Facebook Posts
+      description: Returns recent posts published on the Facebook Page with engagement metrics.
+      operationId: getFacebookPosts
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          description: Number of posts to retrieve (1-20).
+          schema:
+            type: integer
+            default: 5
+        - name: page_id
+          in: query
+          required: false
+          description: Optional Facebook Page ID.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/meta/ad-accounts:
+    get:
+      summary: List Meta Ad Accounts
+      description: Returns list of ad accounts accessible by the user with currency and status.
+      operationId: getMetaAdAccounts
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/meta/ad-account-details:
+    get:
+      summary: Get Ad Account Details
+      description: Returns real-time ad spend, balance, spend caps, and status for an ad account.
+      operationId: getAdAccountDetails
+      parameters:
+        - name: ad_account_id
+          in: query
+          required: false
+          description: Ad account ID (e.g. act_1613858306623881).
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/meta/check-connection:
+    get:
+      summary: Check Meta Connection
+      description: Checks Meta Graph API token validity and status.
+      operationId: checkMetaConnection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+

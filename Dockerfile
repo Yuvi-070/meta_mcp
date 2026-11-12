@@ -23,6 +23,6 @@ COPY meta_mcp_server.py .
 # Expose standard Cloud Run port
 EXPOSE 8080
 
-# Run uvicorn pointing to the ASGI application
-CMD ["uvicorn", "meta_mcp_server:app", "--host", "0.0.0.0", "--port", "8080", "--workers", "1"]
+# Run uvicorn pointing to the ASGI application with dynamic PORT evaluation
+CMD exec uvicorn meta_mcp_server:app --host 0.0.0.0 --port ${PORT:-8080}
 
